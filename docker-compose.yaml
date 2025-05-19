@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb-products
+    environment:
+      - MONGO_INITDB_DATABASE=products
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - mynetwork
+
+  mongo-client:
+    image: mongoclient/mongoclient:latest
+    container_name: mongo-client
+    ports:
+      - "8081:3000"
+    environment:
+      - MONGOCLIENT_DEFAULT_CONNECTION_URL=mongodb://mongodb-products:27017
+    depends_on:
+      - mongodb
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+    name: mynetwork
+
+volumes:
+  mongo_data:

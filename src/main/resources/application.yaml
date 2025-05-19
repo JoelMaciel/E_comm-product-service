@@ -1,0 +1,33 @@
+server:
+  port: 8083
+  servlet:
+    context-path: "/ecomm-product/"
+
+spring:
+  application:
+    name: ecommerce-product-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: products
+
+
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    config-url: /ecomm-product/v3/api-docs/swagger-config
+    url: /ecomm-product/v3/api-docs
+    disable-swagger-default-url: true
+
+
+
+logging:
+  level:
+    com.joel.users: TRACE
+    root: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: INFO
