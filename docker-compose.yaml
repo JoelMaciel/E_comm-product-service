@@ -6,6 +6,8 @@ services:
     container_name: mongodb-products
     environment:
       - MONGO_INITDB_DATABASE=products
+      - MONGO_INITDB_ROOT_USERNAME=joel
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
     ports:
       - "27017:27017"
     volumes:
@@ -13,22 +15,9 @@ services:
     networks:
       - mynetwork
 
-  mongo-client:
-    image: mongoclient/mongoclient:latest
-    container_name: mongo-client
-    ports:
-      - "8081:3000"
-    environment:
-      - MONGOCLIENT_DEFAULT_CONNECTION_URL=mongodb://mongodb-products:27017
-    depends_on:
-      - mongodb
-    networks:
-      - mynetwork
-
 networks:
   mynetwork:
     driver: bridge
-    name: mynetwork
 
 volumes:
   mongo_data:
