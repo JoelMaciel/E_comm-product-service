@@ -8,7 +8,7 @@ spring:
     name: ecommerce-product-service
   data:
     mongodb:
-      uri: mongodb://localhost:27017
+      uri: mongodb://joel:mongo@localhost:27017/products?authSource=admin
       database: products
 
 
